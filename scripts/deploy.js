@@ -47,7 +47,9 @@ async function deployWith() {
 
   //await setupStablePriceOracle(stablePriceOracle, ethers.parseEther("0.00001582318"), ethers.parseEther("0.00000631024"), ethers.parseEther("0.00000313926"), ethers.parseEther("0.00000155377"), ethers.parseEther("1.5854896"));
 
-  const monRegistrarController = await deployMonRegistrarController(baseRegistrarImplementation, stablePriceOracle, 5, 86400, reverseRegistrar, registryWithFallback);
+  //const monRegistrarController = await deployMonRegistrarController(baseRegistrarImplementation, stablePriceOracle, 5, 86400, reverseRegistrar, registryWithFallback);
+
+  const monRegistrarController = await deployMonRegistrarController(baseRegistrarImplementation, stablePriceOracle, reverseRegistrar, registryWithFallback);
   
   await setupMonRegistrarController(reverseRegistrar, baseRegistrarImplementation, monRegistrarController);
   
@@ -98,8 +100,8 @@ async function deployStablePriceOracle() {
   return stablePriceOracle;
 }
 
-async function deployMonRegistrarController(baseRegistrarImplementation, stablePriceOracle, minCommitmentAge, maxCommitmentAge, reverseRegistrar, registry) { 
-  const monRegistrarController = await ethers.deployContract("MONRegistrarController",[baseRegistrarImplementation.target, stablePriceOracle.target, minCommitmentAge, maxCommitmentAge, reverseRegistrar.target, registry.target]);
+async function deployMonRegistrarController(baseRegistrarImplementation, stablePriceOracle, reverseRegistrar, registry) { 
+  const monRegistrarController = await ethers.deployContract("MONRegistrarControllerV2",[baseRegistrarImplementation.target, stablePriceOracle.target, reverseRegistrar.target, registry.target]);
   await monRegistrarController.waitForDeployment();
   console.log(`monRegistrarController Deployed: ${monRegistrarController.target} with the params: ${baseRegistrarImplementation.target} ${stablePriceOracle.target} ${minCommitmentAge} ${maxCommitmentAge} ${reverseRegistrar.target} ${registry.target}`)
   return monRegistrarController;
