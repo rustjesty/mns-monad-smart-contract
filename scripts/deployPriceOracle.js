@@ -29,7 +29,7 @@ async function deployWith() {
   
   const stablePriceOracle = await (await ethers.getContractFactory("StablePriceOracle")).attach("0x62375065222890a0Cc4FDD3D89c3dD3AC2850708")
  
-  await setupStablePriceOracle(stablePriceOracle, ethers.parseEther("0.000000000000001580"), ethers.parseEther("0.000000000000000316"), ethers.parseEther("0.000000000000000008"), ethers.parseEther("0.000000000000000004"), ethers.parseEther("0.000000000000000002"));
+  await setupStablePriceOracle(stablePriceOracle, ethers.parseEther("0.000000000000001580"), ethers.parseEther("0.000000000000000632"), ethers.parseEther("0.000000000000000008"), ethers.parseEther("0.000000000000000004"), ethers.parseEther("0.000000000000000002"));
 
 
    
