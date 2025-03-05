@@ -55,6 +55,10 @@ async function deployWith() {
   
   const publicResolver  = await deployPublicResolver(registryWithFallback, monRegistrarController, reverseRegistrar);
 
+  // deploy
+  baseRegistrarImplementation.setBaseUri("https://metadata.monadns.com/monad/"+ baseRegistrarImplementation.target +"/");
+  reverseRegistrar.setDefaultResolver(publicResolver.target);
+
   await setupResolver(registryWithFallback, publicResolver)
 }
  
