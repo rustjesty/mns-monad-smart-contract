@@ -12,6 +12,8 @@ node_modules
 src
 contracts.txt
 
+scripts
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
