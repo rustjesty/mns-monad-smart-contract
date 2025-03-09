@@ -55,7 +55,7 @@ contract BaseRegistrarImplementation is ERC721, IBaseRegistrar, Ownable {
             isApprovedForAll(owner, spender));
     }
 
-    constructor(ENS _ens, bytes32 _baseNode) ERC721("Monad Name Service", "MNS") Ownable(msg.sender) {
+    constructor(ENS _ens, bytes32 _baseNode) ERC721("Mon Name Service", "MNS") Ownable(msg.sender) {
         ens = _ens;
         baseNode = _baseNode;
     }
