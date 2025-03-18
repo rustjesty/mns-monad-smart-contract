@@ -1,11 +1,10 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.4;
 
 import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import "../ResolverBase.sol";
 import "./AddrResolver.sol";
-import "./interfaces/IInterfaceResolver.sol";
+import "./IInterfaceResolver.sol";
 
 abstract contract InterfaceResolver is IInterfaceResolver, AddrResolver {
     mapping(uint64 => mapping(bytes32 => mapping(bytes4 => address))) versionable_interfaces;

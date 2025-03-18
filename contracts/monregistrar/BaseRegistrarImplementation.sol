@@ -48,14 +48,14 @@ contract BaseRegistrarImplementation is ERC721, IBaseRegistrar, Ownable {
     function _isApprovedOrOwner(
         address spender,
         uint256 tokenId
-    ) internal view  returns (bool) {
+     ) internal view override returns (bool) {
         address owner = ownerOf(tokenId);
         return (spender == owner ||
             getApproved(tokenId) == spender ||
             isApprovedForAll(owner, spender));
     }
 
-    constructor(ENS _ens, bytes32 _baseNode) ERC721("Mon Name Service", "MNS") Ownable(msg.sender) {
+    constructor(ENS _ens, bytes32 _baseNode) ERC721("Mon Name Service", "MNS")  {
         ens = _ens;
         baseNode = _baseNode;
     }

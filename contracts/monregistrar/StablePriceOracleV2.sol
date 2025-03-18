@@ -19,7 +19,7 @@ contract StablePriceOracleV2 is IPriceOracle, Ownable {
     IPyth public immutable _priceOracle;
     bytes32 public immutable _feedId;
  
-    constructor(IPyth priceOracle, bytes32 feedId, uint256[] memory prices) Ownable(msg.sender) {
+    constructor(IPyth priceOracle, bytes32 feedId, uint256[] memory prices) {
         _priceOracle = priceOracle;
         _feedId = feedId;
         setPrices(prices);

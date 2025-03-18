@@ -1,6 +1,5 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.4;
 
 /**
  * Interface for the new (multicoin) addr function.

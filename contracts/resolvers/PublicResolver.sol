@@ -1,6 +1,5 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+//SPDX-License-Identifier: MIT
+pragma solidity >=0.8.17 <0.9.0;
 
 import "../registry/ENS.sol";
 import "./profiles/ABIResolver.sol";
@@ -11,8 +10,9 @@ import "./profiles/InterfaceResolver.sol";
 import "./profiles/NameResolver.sol";
 import "./profiles/PubkeyResolver.sol";
 import "./profiles/TextResolver.sol";
-import "./Multicallable.sol"; 
-//import {INameWrapper} from "../wrapper/INameWrapper.sol";
+import "./Multicallable.sol";
+import {ReverseClaimer} from "../reverseRegistrar/ReverseClaimer.sol";
+import {INameWrapper} from "../wrapper/INameWrapper.sol";
 
 /**
  * A simple resolver anyone can use; only allows the owner of a node to set its
@@ -27,10 +27,11 @@ contract PublicResolver is
     InterfaceResolver,
     NameResolver,
     PubkeyResolver,
-    TextResolver
+    TextResolver,
+    ReverseClaimer
 {
     ENS immutable ens;
-    //INameWrapper immutable nameWrapper;
+    INameWrapper immutable nameWrapper;
     address immutable trustedETHController;
     address immutable trustedReverseRegistrar;
 
@@ -68,12 +69,12 @@ contract PublicResolver is
 
     constructor(
         ENS _ens,
-        //INameWrapper wrapperAddress,
+        INameWrapper wrapperAddress,
         address _trustedETHController,
         address _trustedReverseRegistrar
-    )   {
+    ) ReverseClaimer(_ens, msg.sender) {
         ens = _ens;
-        //nameWrapper = wrapperAddress;
+        nameWrapper = wrapperAddress;
         trustedETHController = _trustedETHController;
         trustedReverseRegistrar = _trustedReverseRegistrar;
     }
@@ -130,9 +131,9 @@ contract PublicResolver is
             return true;
         }
         address owner = ens.owner(node);
-        //if (owner == address(nameWrapper)) {
-        //    owner = nameWrapper.ownerOf(uint256(node));
-        //}
+        if (owner == address(nameWrapper)) {
+            owner = nameWrapper.ownerOf(uint256(node));
+        }
         return
             owner == msg.sender ||
             isApprovedForAll(owner, msg.sender) ||

@@ -1,9 +1,8 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.4;
 
 import "../ResolverBase.sol";
-import "./interfaces/INameResolver.sol";
+import "./INameResolver.sol";
 
 abstract contract NameResolver is INameResolver, ResolverBase {
     mapping(uint64 => mapping(bytes32 => string)) versionable_names;

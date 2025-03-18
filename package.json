@@ -3,7 +3,7 @@
   "dependencies": {
     "@ensdomains/buffer": "^0.1.1",
     "@ericxstone/hardhat-blockscout-verify": "^1.0.2",
-    "@openzeppelin/contracts": "^5.0.1",
+    "@openzeppelin/contracts": "^4.1.0",
     "dotenv": "^16.3.1",
     "eth-ens-namehash": "^2.0.8",
     "i": "^0.3.7",

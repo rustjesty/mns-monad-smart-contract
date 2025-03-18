@@ -1,11 +1,10 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.4;
 
 import "../ResolverBase.sol";
 import "../../dnssec-oracle/RRUtils.sol";
-import "./interfaces/IDNSRecordResolver.sol";
-import "./interfaces/IDNSZoneResolver.sol";
+import "./IDNSRecordResolver.sol";
+import "./IDNSZoneResolver.sol";
 
 abstract contract DNSResolver is
     IDNSRecordResolver,

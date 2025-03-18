@@ -1,9 +1,8 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.4;
 
 import "../ResolverBase.sol";
-import "./interfaces/ITextResolver.sol";
+import "./ITextResolver.sol";
 
 abstract contract TextResolver is ITextResolver, ResolverBase {
     mapping(uint64 => mapping(bytes32 => mapping(string => string))) versionable_texts;

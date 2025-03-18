@@ -8,11 +8,7 @@ contract Controllable is Ownable {
     mapping(address => bool) public controllers;
 
     event ControllerChanged(address indexed controller, bool enabled);
-
-    constructor() Ownable(msg.sender) {
-
-    }
-
+ 
     modifier onlyController() {
         require(
             controllers[msg.sender],

@@ -1,6 +1,5 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+//SPDX-License-Identifier: MIT
+pragma solidity >=0.8.17 <0.9.0;
 
 import {ENS} from "../registry/ENS.sol";
 import {IReverseRegistrar} from "../reverseRegistrar/IReverseRegistrar.sol";

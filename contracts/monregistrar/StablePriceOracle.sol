@@ -15,7 +15,7 @@ contract StablePriceOracle is IPriceOracle, Ownable {
     uint256 public price4Letter;
     uint256 public price5Letter;
  
-    constructor() Ownable(msg.sender) {
+    constructor() {
         
     }
 

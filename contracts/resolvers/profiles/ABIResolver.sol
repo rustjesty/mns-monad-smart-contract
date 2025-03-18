@@ -1,8 +1,7 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.4;
 
-pragma solidity ^0.8.20;
-
-import "./interfaces/IABIResolver.sol";
+import "./IABIResolver.sol";
 import "../ResolverBase.sol";
 
 abstract contract ABIResolver is IABIResolver, ResolverBase {

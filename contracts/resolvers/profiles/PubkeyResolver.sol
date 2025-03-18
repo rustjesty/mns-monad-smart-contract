@@ -1,9 +1,8 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.4;
 
 import "../ResolverBase.sol";
-import "./interfaces/IPubkeyResolver.sol";
+import "./IPubkeyResolver.sol";
 
 abstract contract PubkeyResolver is IPubkeyResolver, ResolverBase {
     struct PublicKey {

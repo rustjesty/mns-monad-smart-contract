@@ -1,9 +1,8 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.4;
 
 import "../ResolverBase.sol";
-import "./interfaces/IContentHashResolver.sol";
+import "./IContentHashResolver.sol";
 
 abstract contract ContentHashResolver is IContentHashResolver, ResolverBase {
     mapping(uint64 => mapping(bytes32 => bytes)) versionable_hashes;

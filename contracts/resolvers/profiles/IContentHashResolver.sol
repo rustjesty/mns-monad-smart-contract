@@ -1,6 +1,5 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.8.4;
 
 interface IContentHashResolver {
     event ContenthashChanged(bytes32 indexed node, bytes hash);
