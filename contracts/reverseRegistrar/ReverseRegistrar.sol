@@ -1,6 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+pragma solidity >=0.8.4;
 
 import "../registry/ENS.sol";
 import "./IReverseRegistrar.sol";
@@ -41,12 +40,11 @@ contract ReverseRegistrar is Ownable, Controllable, IReverseRegistrar {
     }
 
     modifier authorised(address addr) {
-        
         require(
             addr == msg.sender ||
                 controllers[msg.sender] ||
-                ens.isApprovedForAll(addr, msg.sender),
-                //ownsContract(addr),
+                ens.isApprovedForAll(addr, msg.sender) ||
+                ownsContract(addr),
             "ReverseRegistrar: Caller is not a controller or authorised by address or the address itself"
         );
         _;
@@ -140,9 +138,9 @@ contract ReverseRegistrar is Ownable, Controllable, IReverseRegistrar {
         address resolver,
         string memory name
     ) public override returns (bytes32) {
-        bytes32 _node = claimForAddr(addr, owner, resolver);
-        NameResolver(resolver).setName(_node, name);
-        return _node;
+        bytes32 node = claimForAddr(addr, owner, resolver);
+        NameResolver(resolver).setName(node, name);
+        return node;
     }
 
     /**
