@@ -44,4 +44,5 @@ npx  hardhat  verify  --network  monadtestnet  {{CONTRACT_ADDRESS}}  {{CONTRACT_
 | MONRegistrarController | 0x6C8a8114dA4EED8A2662B4069418e574411A5540 | |
 | PublicResolver | 0x4569B7AE2e1C13Bb812fEefee06e56a12E67471F | |
 | NameWrapper | 0x08Ca5c9e59d6Fc12BAb8DBa50825DaE57BBa9932 | |
+| UniversalResolver | 0x768be64B577caF84F7D64d0F8e6dc35Dc4737A65 | |
 
