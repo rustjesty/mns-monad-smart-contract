@@ -15,6 +15,7 @@ src
 contracts.txt
 scripts
 test
+*.txt
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

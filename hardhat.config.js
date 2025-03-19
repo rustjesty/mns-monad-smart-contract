@@ -39,5 +39,19 @@ module.exports = {
           }
         }
       ]
+    },
+    etherscan: {
+        enabled: false,
+        apiKey: process.env.ETHER_SCAN_API_KEY,
+        customChains: [
+          {
+            network: "monadtestnet",
+            chainId: 10143,
+            urls: {
+              apiURL: "https://testnet.monadexplorer.com/api?module=contract&action=verify",
+              browserURL: "https://testnet.monadexplorer.com/"
+            }
+          }
+        ]
     }
 };

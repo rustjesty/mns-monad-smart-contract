@@ -28,7 +28,8 @@ contract StablePriceOracle is IPriceOracle, Ownable {
     }   
 
     function price(
-        string calldata name, 
+        string calldata name,
+        uint256 expires, 
         uint256 duration
     ) external view override returns (IPriceOracle.Price memory) {
         uint256 len = name.strlen();

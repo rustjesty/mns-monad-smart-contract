@@ -2,7 +2,7 @@
 pragma solidity >=0.8.4;
 
 /**
- * Interface for the legacy (ETH-only) addr function.
+ * Interface for the legacy (MON-only) addr function.
  */
 interface IAddrResolver {
     event AddrChanged(bytes32 indexed node, address a);

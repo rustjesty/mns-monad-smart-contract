@@ -1,6 +1,5 @@
-// SPDX-License-Identifier: UNLICENSED
-
-pragma solidity ^0.8.20;
+//SPDX-License-Identifier: MIT
+pragma solidity ~0.8.17;
 
 import "./IPriceOracle.sol";
 
@@ -12,6 +11,7 @@ interface IMONRegistrarController {
 
     function available(string memory) external returns (bool);
 
+    /*
     function makeCommitment(
         string memory,
         address,
@@ -24,8 +24,7 @@ interface IMONRegistrarController {
     ) external pure returns (bytes32);
 
     function commit(bytes32) external;
-
-    function commitments(bytes32) external view returns (uint256);
+    */
 
     function register(
         string calldata,
