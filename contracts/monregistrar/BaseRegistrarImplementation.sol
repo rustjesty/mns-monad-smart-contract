@@ -152,16 +152,12 @@ contract BaseRegistrarImplementation is ERC721, IBaseRegistrar, Ownable {
         ); // Prevent future overflow
 
         expiries[id] = block.timestamp + duration;
-
-        // This block has been changed because of ERC721 old version compatibility
-        address existsOwner = _ownerOf(id);
-        if (existsOwner != address(0)) {
+        
+        if (_exists(id)) {
             // Name was previously owned, and expired
             _burn(id);
         }
-
         _mint(owner, id);
-
         if (updateRegistry) {
             ens.setSubnodeOwner(baseNode, bytes32(id), owner);
         }

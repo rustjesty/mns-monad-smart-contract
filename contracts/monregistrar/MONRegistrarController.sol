@@ -39,7 +39,7 @@ contract MONRegistrarController is
     using StringUtils for *;
     using Address for address;
 
-    uint256 public constant MIN_REGISTRATION_DURATION = 28 days;
+    uint256 public constant MIN_REGISTRATION_DURATION = 84 days;
     bytes32 private constant MON_NODE =
         0xc6467acde3662083e12f3fbcf8aef57155a035e49629628eb9453948d1afb379;
     uint64 private constant MAX_EXPIRY = type(uint64).max;
@@ -101,7 +101,7 @@ contract MONRegistrarController is
     }
 
     function valid(string memory name) public pure returns (bool) {
-        return name.strlen() >= 2;
+        return name.strlen() >= 1;
     }
 
     function available(string memory name) public view override returns (bool) {
@@ -160,6 +160,10 @@ contract MONRegistrarController is
         IPriceOracle.Price memory price = rentPrice(name, duration);
         if (msg.value < price.base + price.premium) {
             revert InsufficientValue();
+        }
+
+        if (duration < MIN_REGISTRATION_DURATION) {
+            revert DurationTooShort(duration);
         }
 
         /* 
