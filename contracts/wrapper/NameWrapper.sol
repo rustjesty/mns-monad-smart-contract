@@ -43,7 +43,7 @@ contract NameWrapper is
     IBaseRegistrar public immutable registrar;
     IMetadataService public metadataService;
     mapping(bytes32 => bytes) public names;
-    string public constant name = "NameWrapper";
+    string public name = "MonNameWrapper";
 
     uint64 private constant GRACE_PERIOD = 90 days;
     bytes32 private constant MON_NODE =
@@ -1176,5 +1176,11 @@ contract NameWrapper is
         return
             fuses & IS_DOT_MON == IS_DOT_MON &&
             expiry - GRACE_PERIOD < block.timestamp;
+    }
+
+    function setName(
+        string memory _name
+    ) public onlyOwner {
+        name = _name;
     }
 }
