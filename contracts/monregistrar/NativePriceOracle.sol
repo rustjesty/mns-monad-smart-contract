@@ -2,12 +2,11 @@
 
 pragma solidity ^0.8.20;
 
-import "./IPyth.sol";
 import "./IPriceOracle.sol";
 import "./StringUtils.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
- 
-contract StablePriceOracleV2 is IPriceOracle, Ownable {
+
+contract NativePriceOracle is IPriceOracle, Ownable {
     using StringUtils for *;
  
     uint256 public price1Letter;
@@ -15,17 +14,12 @@ contract StablePriceOracleV2 is IPriceOracle, Ownable {
     uint256 public price3Letter;
     uint256 public price4Letter;
     uint256 public price5Letter;
-
-    IPyth public immutable _priceOracle;
-    bytes32 public immutable _feedId;
  
-    constructor(IPyth priceOracle, bytes32 feedId, uint256[] memory prices) {
-        _priceOracle = priceOracle;
-        _feedId = feedId;
-        setPrices(prices);
+    constructor() {
+        
     }
 
-    function setPrices(uint256[] memory prices) public onlyOwner () {
+    function setPrices(uint256[] memory prices) external onlyOwner () {
         price1Letter = prices[0];
         price2Letter = prices[1];
         price3Letter = prices[2];
@@ -34,8 +28,8 @@ contract StablePriceOracleV2 is IPriceOracle, Ownable {
     }   
 
     function price(
-        string calldata name, 
-        uint256 expires,
+        string calldata name,
+        uint256 expires, 
         uint256 duration
     ) external view override returns (IPriceOracle.Price memory) {
         uint256 len = name.strlen();
@@ -55,18 +49,8 @@ contract StablePriceOracleV2 is IPriceOracle, Ownable {
 
         return
             IPriceOracle.Price({
-                base: attoUSDToWei(basePrice),
+                base: (basePrice * 1e8),
                 premium: 0
             });
     } 
-
-    function attoUSDToWei(uint256 amount) internal view returns (uint256) {
-        PythStructs.Price memory oracle = _priceOracle.getPriceUnsafe(_feedId);
-        return (amount * 1e8) / oracle.price;
-    }
-
-    function weiToAttoUSD(uint256 amount) internal view returns (uint256) {
-        PythStructs.Price memory oracle = _priceOracle.getPriceUnsafe(_feedId);
-        return (amount * oracle.price) / 1e8;
-    }
 }

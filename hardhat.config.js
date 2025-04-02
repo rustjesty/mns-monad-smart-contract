@@ -23,6 +23,11 @@ module.exports = {
         monadtestnet: {
             url: "https://testnet-rpc.monad.xyz/",
             accounts: [process.env.DEPLOYER_PRIVATE_KEY],
+        },
+        sepolia: {
+          url: `https://eth-sepolia.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}`,
+          accounts: [process.env.DEPLOYER_PRIVATE_KEY],
+          allowUnlimitedContractSize: true
         }
     },
     sourcify: {
